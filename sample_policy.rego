@@ -1,3 +1,6 @@
+# Deploy with:
+# podman run -p 8181:8181 -v <LOCALPOLICYFOLDER>:/policies openpolicyagent/opa     run --server --log-level debug --addr=0.0.0.0:8181 /policies
+
 package aap_tests
 
 has_change if {
