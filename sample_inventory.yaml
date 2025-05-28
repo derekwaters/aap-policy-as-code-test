@@ -1,0 +1,87 @@
+# This is the AAP growth installer inventory file
+# Please consult the docs if you're unsure what to add
+# For all optional variables please consult the included README.md
+# or the Red Hat documentation:
+# https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5/html/containerized_installation
+
+# This section is for your AAP Gateway host(s)
+# -----------------------------------------------------
+all:
+  children:
+    automationgateway:
+      hosts:
+        aap25.localdomain
+
+    # This section is for your AAP Controller host(s)
+    # -----------------------------------------------------
+    automationcontroller:
+      hosts:
+        aap25.localdomain
+
+    # This section is for your AAP Automation Hub host(s)
+    # -----------------------------------------------------
+    automationhub:
+      hosts:
+        aap25.localdomain
+
+    # This section is for your AAP EDA Controller host(s)
+    # -----------------------------------------------------
+    automationeda:
+      hosts:
+        aap25.localdomain
+
+    # This section is for the AAP database
+    # -----------------------------------------------------
+    database:
+      hosts:
+        aap25.localdomain
+
+  # [all:vars]
+  vars:
+
+    # Common variables
+    # https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5/html/containerized_installation/appendix-inventory-files-vars#ref-general-inventory-variables
+    # -----------------------------------------------------
+    postgresql_admin_username: postgres
+    postgresql_admin_password: Password1
+
+    # Common variables
+    # https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5/html/containerized_installation/appendix-inventory-files-vars#ref-general-inventory-variables
+    # -----------------------------------------------------
+    registry_username: RH-USERNAME
+    registry_password: "RH-PASSWORD"
+
+    redis_mode: standalone
+
+    feature_flags:
+      FEATURE_POLICY_AS_CODE_ENABLED: True
+
+    # AAP Gateway
+    # https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5/html/containerized_installation/appendix-inventory-files-vars#ref-gateway-variables
+    # -----------------------------------------------------
+    gateway_admin_password: Password1
+    gateway_pg_host: aap25.localdomain
+    gateway_pg_password: Password1
+
+    # AAP Controller
+    # https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5/html/containerized_installation/appendix-inventory-files-vars#ref-controller-variables
+    # -----------------------------------------------------
+    controller_admin_password: Password1
+    controller_pg_host: aap25.localdomain
+    controller_pg_password: Password1
+
+    # AAP Automation Hub
+    # https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5/html/containerized_installation/appendix-inventory-files-vars#ref-hub-variables
+    # -----------------------------------------------------
+    hub_admin_password: Password1
+    hub_pg_host: aap25.localdomain
+    hub_pg_password: Password1
+
+    # AAP EDA Controller
+    # https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.5/html/containerized_installation/appendix-inventory-files-vars#event-driven-ansible-controller
+    # -----------------------------------------------------
+    eda_admin_password: Password1
+    eda_pg_host: aap25.localdomain
+    eda_pg_password: Password1
+
+
