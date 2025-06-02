@@ -5,13 +5,19 @@
 
 package aap_tests
 
-default allowed := false
+default is_allowed := false
 
-allowed if {
+allowed := {
+	"allowed": is_allowed,
+	"violations": [],
+}
+
+is_allowed if {
 	count(input.extra_vars.change_number) > 0
 }
 
-allowed if {
+is_allowed if {
 	count(input.extra_vars.incident_number) > 0
 }
+
 
