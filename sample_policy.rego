@@ -6,20 +6,32 @@
 package aap_tests
 
 default allowed := {
-	"allowed": false,
-	"violations": ["No Change/Incident Number Provided"],
-}
-
-allowed := {
 	"allowed": true,
 	"violations": [],
-} if {
+}
+
+violating_credentials := {cred.name | cred := input.credentials[_]; cred.organization == null}
+
+default has_change_or_incident := false
+
+has_change_or_incident if {
 	count(input.extra_vars.change_number) > 0
 }
 
-allowed := {
-	"allowed": true,
-	"violations": [],
-} if {
+has_change_or_incident if {
 	count(input.extra_vars.incident_number) > 0
+}
+
+allowed := {
+	"allowed": false,
+	"violations": ["No change or incident number supplied"],
+} if {
+	has_change_or_incident == false
+}
+
+allowed := {
+	"allowed": false,
+	"violations": ["Credential with no Organization"],
+} if {
+	count(violating_credentials) > 0
 }
