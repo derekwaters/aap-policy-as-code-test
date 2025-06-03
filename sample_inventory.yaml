@@ -83,5 +83,3 @@ all:
     eda_admin_password: Password1
     eda_pg_host: aap25.localdomain
     eda_pg_password: Password1
-
-
