@@ -4,7 +4,7 @@ After=local-fs.target
 
 [Container]
 # Note that this tag is required to get an ARM build of the container
-Image=docker.io/openpolicyagent/opa:1.6.0-dev-static-debug
+Image=docker.io/openpolicyagent/opa:latest-static-debug
 PublishPort=8181:8181
 Exec=run --server --log-level debug --addr=0.0.0.0:8181
 
